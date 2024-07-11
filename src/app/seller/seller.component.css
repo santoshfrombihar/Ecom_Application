@@ -1,0 +1,16 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    margin-left: 500px;
+    width: 500px;
+}
+
+h2{
+    margin-left: 650px;
+    color: blueviolet;
+}
+.input {
+    margin-top: 10px;
+    height: 30px;
+    border-color: blueviolet;
+}

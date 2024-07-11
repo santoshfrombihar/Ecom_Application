@@ -1,0 +1,12 @@
+<div class="seller-form">
+    <h2>Seller Login</h2>
+    <div>
+        <form class="form" #sellerData="ngForm" (ngSubmit)=submitSellerdata(sellerData.value)>
+            <input type="text" class="input" name="name" ngModel placeholder="Enter your full name" />
+            <input type="password" class="input" name="password" ngModel placeholder="Enter your password" />
+            <input type="password" class="input" name="confirmPassword" ngModel placeholder="Confirm your password" />
+            <input type="email" class="input" name="email" ngModel placeholder="Enter your email" />
+            <button class="input">Submit</button>
+        </form>
+    </div>
+</div>
