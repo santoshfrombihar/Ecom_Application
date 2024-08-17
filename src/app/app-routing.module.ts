@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { SellerComponent } from './Teachers/seller/seller.component';
+import { TeacherLoginRegisterComponent } from './Teachers/TeachersAuth/teacherLoginRegister.component';
 import { WelcomepageComponent } from './Teachers/welcomepage/welcomepage.component';
 
 const routes: Routes = [
@@ -10,8 +10,8 @@ const routes: Routes = [
     component:HomeComponent
   },
   {
-    path:'seller-page',
-    component:SellerComponent
+    path:'teachers-page',
+    component:TeacherLoginRegisterComponent
   },
   {
     path: 'welcomepage',

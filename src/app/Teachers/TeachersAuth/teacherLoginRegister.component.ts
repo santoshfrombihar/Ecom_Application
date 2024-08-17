@@ -3,10 +3,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-seller',
-  templateUrl: './seller.component.html',
-  styleUrls: ['./seller.component.css']
+  templateUrl: './teacherLoginRegister.component.html',
+  styleUrls: ['./teacherLoginRegister.component.css']
 })
-export class SellerComponent implements OnInit {
+export class TeacherLoginRegisterComponent implements OnInit {
 
   constructor() { }
 
