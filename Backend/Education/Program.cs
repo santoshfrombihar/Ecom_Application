@@ -1,8 +1,12 @@
 
 using System.Text;
 using Education.ConfigClass;
+using Education.DbContextFile;
+using Education.Services.Implementation.UserAuthService;
+using Education.Services.Interface.UserAuth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.DataProtection.KeyManagement;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Education;
@@ -34,7 +38,11 @@ public class Program
             };
         });
         builder.Services.AddSingleton<JwtTokenGenerator>(new JwtTokenGenerator(builder.Configuration["JwtSettings:SecretKey"]));
-
+        builder.Services.AddScoped<ITeacherRegistration, TeacherRegistration>();
+        builder.Services.AddDbContext<EducationRoomDbContext>(options =>
+        {
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+        });
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
