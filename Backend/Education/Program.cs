@@ -1,4 +1,10 @@
 
+using System.Text;
+using Education.ConfigClass;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.DataProtection.KeyManagement;
+using Microsoft.IdentityModel.Tokens;
+
 namespace Education;
 
 public class Program
@@ -6,8 +12,28 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        var key = Encoding.ASCII.GetBytes(builder.Configuration["JwtSettings:SecretKey"]);
 
-        // Add services to the container.
+        builder.Services.AddAuthentication(x =>
+        {
+            x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        })
+        .AddJwtBearer(x =>
+        {
+            x.RequireHttpsMetadata = false;
+            x.SaveToken = true;
+            x.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateLifetime = true,
+                ClockSkew = TimeSpan.Zero
+            };
+        });
+        builder.Services.AddSingleton<JwtTokenGenerator>(new JwtTokenGenerator(builder.Configuration["JwtSettings:SecretKey"]));
 
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -23,8 +49,8 @@ public class Program
             app.UseSwaggerUI();
         }
 
-        app.UseHttpsRedirection();
-
+        app.UseRouting();
+        app.UseAuthentication();
         app.UseAuthorization();
 
 
