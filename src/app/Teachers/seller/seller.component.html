@@ -1,5 +1,5 @@
 <div class="seller-form">
-    <h2>Seller Login</h2>
+    <h2>{{'Seller Login' | reverse}}</h2>
     <div>
         <form class="form" #sellerData="ngForm" (ngSubmit)=submitSellerdata(sellerData.value)>
             <input type="text" class="input" name="name" ngModel placeholder="Enter your full name" />

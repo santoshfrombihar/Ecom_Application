@@ -8,6 +8,7 @@ import { SellerComponent } from './Teachers/seller/seller.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { WelcomepageComponent } from './Teachers/welcomepage/welcomepage.component';
+import { ReversePipe } from './Teachers/seller/seller.pipe';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { WelcomepageComponent } from './Teachers/welcomepage/welcomepage.compone
     HeaderComponent,
     SellerComponent,
     HomeComponent,
-    WelcomepageComponent
+    WelcomepageComponent,
+    ReversePipe
   ],
   imports: [
     BrowserModule,
